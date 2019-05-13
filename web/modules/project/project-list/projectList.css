@@ -1,0 +1,534 @@
+#project-manage-root {
+  position: relative;
+  margin: 0 -15px;
+}
+/*地图模式*/
+#project-manage-map-mode {
+  position: relative;
+  width: 100%;
+  height: 1000px;
+}
+#project-manage-map-box {
+  width: 100%;
+  height: 1000px;
+}
+#project-mode-choose-box {
+  position: absolute;
+  top: 15px;
+  right: 7px;
+}
+#project-manage-search-box {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 350px;
+  height: 220px;
+  margin-left: 15px;
+}
+#project-manage-result-box {
+  position: absolute;
+  top: 250px;
+  left: 15px;
+  width: 350px;
+  max-height: 750px;
+  margin-left: 15px;
+}
+#project-manage-result-box .result-item {
+  padding: 15px;
+  cursor: pointer;
+  width: 348px;
+}
+#project-manage-result-box .result-item a {
+  color: inherit;
+}
+#project-manage-result-box .result-item:hover {
+  background: #EDF0F4;
+}
+#project-manage-result-box .result-item.active {
+  background: #EDF0F4;
+}
+#project-manage-result-box .index-box {
+  float: left;
+  width: 38px;
+  margin-left: -8px;
+  margin-right: 8px;
+}
+#project-manage-result-box .main-box {
+  position: relative;
+  float: left;
+  width: 280px;
+}
+#project-manage-result-box .header-box {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+}
+#project-manage-result-box .title-box {
+  width: 208px;
+  padding: 5px 0;
+  float: left;
+}
+#project-manage-result-box .title-box .projectName {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#project-manage-result-box .result-item:hover .title-box .projectName,
+#project-manage-result-box .result-item.active .title-box .projectName {
+  color: #248bfe;
+}
+#project-manage-result-box .status-box {
+  width: 71px;
+  float: left;
+  padding: 5px 0;
+  text-align: right;
+}
+#project-manage-result-box .status-box .label {
+  /*border-radius: 0 12px 12px 12px;*/
+  /*font-weight: normal;*/
+  width: 60px;
+  height: 22px;
+  /*line-height: 14px;*/
+  border: 1px solid rgba(140, 158, 255, 1);
+  border-radius: 3px;
+  font-weight: 400;
+  color: #8C9EFF;
+  background-color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  text-align: center;
+}
+#project-manage-result-box .body-box {
+
+}
+#project-manage-result-box .info-box {
+  width: 180px;
+  float: left;
+}
+#project-manage-result-box .info-item {
+  padding: 2px;
+  color: #939ba4;
+  margin-top: 3px;
+}
+#project-manage-result-box .img-box {
+  width: 100px;
+  float: left;
+}
+#project-manage-result-box .top-box {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+}
+#project-manage-result-box .untop-box {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+}
+#project-manage-result-box .icon1 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: 0px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon2 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -44px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon3 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -88px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon4 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -132px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon5 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -176px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon6 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -220px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon7 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -264px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon8 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -308px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon9 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -352px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon10 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -396px -132px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon11 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: 0px -176px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon12 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -44px -176px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon13 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -88px -176px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon14 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -132px -176px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .icon15 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -176px -176px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon1,
+#project-manage-result-box .result-item.active .icon1 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: 0px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon2,
+#project-manage-result-box .result-item.active .icon2 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -44px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon3,
+#project-manage-result-box .result-item.active .icon3 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -88px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon4,
+#project-manage-result-box .result-item.active .icon4 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -132px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon5,
+#project-manage-result-box .result-item.active .icon5 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -176px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon6,
+#project-manage-result-box .result-item.active .icon6 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -220px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon7,
+#project-manage-result-box .result-item.active .icon7 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -264px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon8,
+#project-manage-result-box .result-item.active .icon8 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -308px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon9,
+#project-manage-result-box .result-item.active .icon9 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -352px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon10,
+#project-manage-result-box .result-item.active .icon10 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -396px -44px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon11,
+#project-manage-result-box .result-item.active .icon11 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: 0px -88px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon12,
+#project-manage-result-box .result-item.active .icon12 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -44px -88px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon13,
+#project-manage-result-box .result-item.active .icon13 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -88px -88px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon14,
+#project-manage-result-box .result-item.active .icon14 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -132px -88px;
+  background-size: 437px 262px;
+}
+#project-manage-result-box .result-item:hover .icon15,
+#project-manage-result-box .result-item.active .icon15 {
+  width: 44px;
+  height: 44px;
+  background-image: url(http://ditu.amap.com/assets/img/poi-marker.png);
+  background-position: -176px -88px;
+  background-size: 437px 262px;
+}
+/* 列表模式 */
+#project-manage-list-mode {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+}
+label {
+  font-weight: 500;
+}
+table th {
+  font-weight: 500;
+}
+.belongCompany {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+label input[type="checkbox"] + i:before {
+  content: "\f096";
+  cursor: pointer;
+  font-size: 17px;
+}
+#table-striped th:first-child, #table-striped tr td:first-child {
+  width: 60px;
+  text-align: center;
+  padding-right: 20px !important;
+}
+.projectState {
+  /*width: 75px;*/
+  text-align: center;
+  margin-right: 26px;
+}
+.projectState.single {
+  width: 100px;
+}
+.projectState.other {
+  width: 85px;
+}
+.projectState span {
+  display: inline-block;
+  padding-left: 10px;
+  font-weight: 400;
+  color: #333;
+}
+.modal-alert .modal-body_inner .inner_content .text_box .text_box_titleBox {
+  line-height: 60px;
+}
+.stopWork {
+  width: 20px;
+  height: 17px;
+  border: 1px solid rgba(236, 65, 43, 1);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(236, 65, 43, 1);
+  display: inline-block;
+  text-align: center;
+  line-height: 15px;
+  margin-left: 4px;
+}
+.statusBtn {
+  display: inline-block;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.table tbody tr td {
+  height: 55px;
+}
+.gray {
+  color: #939BA4;
+  font-weight: 400;
+  margin-right: 10px;
+}
+.keywords.has-feedback {
+  margin-bottom: 0;
+  width: 420px;
+}
+.line-height-34 {
+  line-height: 34px;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+  background-color: #248bfe;
+}
+a, a:hover, a:visited, a:link {
+  color: #248bfe;
+  text-decoration: none;
+}
+.fontWeight400 {
+  font-weight: 400;
+}
+.selectBox label {
+  margin-bottom: 0;
+}
+/*副文本框编辑器样式*/
+#edui_fixedlayer {
+  z-index: 1000000 !important;
+}
+.edui-default .edui-colorpicker-nocolor {
+  height: 20px;
+}
+.selctBox {
+  height: 200px;
+  overflow-y: auto;
+}
+.selctOption {
+  width: 150px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.t-l {
+  text-align: left;
+}
+.t-r {
+  text-align: right;
+}
+.selctOption a span{
+  width: 130px;
+  display: -webkit-inline-box;
+}
+
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel-default {
+  border-color: #ddd;
+}
+.panel-body {
+  padding: 15px;
+}
+.form-horizontal .form-group {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.label-warning {
+  background-color: #ff7c34;
+}
+.label-danger {
+  background-color: #f44336;
+}
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+.project .ivu-btn {
+  padding: 5px 14px 6px;
+}
+.project .list {
+  margin-bottom: 5px;;
+  margin-top: 5px;
+  width: 348px;
+  height: 620px;
+  overflow: hidden;
+}
+.project .list .block {
+  padding-left: 0;
+  padding-right: 0;
+  width: 365px;
+  height: 620px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.project .list .block::-webkit-scrollbar {
+  display: none;
+}
+.project .ivu-page-item-active a{
+  color: #fff;
+}

@@ -1,0 +1,130 @@
+/*公共*/
+.mar-5 {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.mar-right-5 {
+    margin-right: 5px;
+}
+
+.col-grey {
+    color: #939BA4;
+}
+
+/*.btn-danger{*/
+/*color: #fff;*/
+/*background-color: #e53935;*/
+/*opacity: .8;*/
+/*border-color: #f32c1e;*/
+/*}*/
+
+/*头部*/
+.header {
+    margin-top: 30px;
+}
+
+.header .title {
+    font-size: 16px;
+    margin-bottom: 20px;
+    /*color: #666666;*/
+}
+
+.header .operation {
+    margin-top: 15px;
+}
+
+/*表格*/
+.table label {
+    margin: 0;
+}
+
+.table tbody .rename {
+    display: inline-block;
+}
+
+.table tbody .rename input {
+    display: inline-block;
+    width: auto;
+}
+
+.table tbody .img-box {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+
+.table tbody .img-box img {
+    height: 100%;
+    width: 100%;
+}
+
+.table tbody tr td {
+    line-height: 30px;
+    border-top: none;
+}
+
+.table tbody tr td:nth-child(1), .table thead tr th:nth-child(1) {
+    width: 50px;
+}
+
+.table tbody tr td:nth-child(2), .table thead tr th:nth-child(2) {
+    padding-left: 15px;
+}
+
+.table tbody tr td:nth-child(3), .table thead tr th:nth-child(3) {
+    padding-left: 25px;
+}
+
+.date-img {
+    margin-left: 5px;
+}
+/*操作选项ui调整4.0*/
+.handle-wrap {
+    position: relative;
+}
+
+.handle-wrap div {
+    display: inline-block;
+}
+
+.handle-wrap .more img {
+    z-index: -1;
+}
+
+.handle-wrap .download {
+    padding-right: 10px;
+}
+
+.handle-wrap .handle {
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.handle-wrap .handle {
+    text-align: center;
+    width: 100px;
+    /*padding: 5px 30px;*/
+    z-index: 999;
+    border-radius: 5px;
+    border: 1px solid #e2e4e9;
+}
+
+.position {
+    margin-left: 37px;
+}
+
+.text-primary:hover {
+    /*display: inline-block;*/
+    /*text-decoration: underline;*/
+    background-color: #edf0f5;
+    color: #248bfe;
+}
+.isShow{
+    visibility: hidden;
+}
+
+
+

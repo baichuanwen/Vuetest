@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="/client/business/cloud/cloud-enterprise/cloud-enterprise.css?version=5.0">
+
+<div class="header">
+    <h4 class="title">首页</h4>
+    <div class="operation clearfix">
+        <button class="btn btn-primary btn-width-90 pull-left" ng-click="createFile()">创建共享</button>
+        <button class="btn btn-danger btn-width-90 mar-left-10 pull-left" ng-show="!isSearch && hasPermission(143)" ng-click="batchDelete()">删除</button>
+
+        <form class="form-group has-feedback ng-pristine ng-valid pull-right" ng-submit="isSearch = true;listSearch({pageNo:1})">
+            <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="搜索文件..." ng-model="pagesInfo.condition">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" ng-click="isSearch = true;listSearch({pageNo:1})"></span>
+        </form>
+    </div>
+</div>
+
+<!--表格-->
+<table class="table table-striped table-hover" ng-hide="!data.length">
+    <thead>
+    <tr>
+        <th class="text-center" ng-show="!isSearch && hasPermission(143)">
+            <label>
+                <input type="checkbox" ng-checked="isSelecteAll" ng-click="selectAll()">
+                <i></i>
+            </label>
+            <!--<input type="checkbox" ng-checked="isSelecteAll" ng-click="selectAll()">-->
+        </th>
+        <th class="text-left">
+            <div class="pull-left">文件夹名</div>
+            <div class="pull-left date-img" ng-click="srotFile()"><img id="srotfile" src="/client/business/cloud/images/auto.png"></div>
+        </th>
+        <th class="text-left"></th>
+        <th class="text-left">创建者</th>
+        <th class="text-left">大小</th>
+        <th class="text-left">共享成员数</th>
+        <th class="text-left">
+            <div class="pull-left">创建时间</div>
+            <div class="pull-left date-img" ng-click="srot()"><img id="srot" src="/client/business/cloud/images/auto.png"></div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in data track by $index" ng-mouseenter="visibi = false" ng-mouseleave="visibi = true" >
+        <td class="text-center" ng-show="!isSearch && hasPermission(143)">
+            <label>
+                <input type="checkbox" ng-checked="item.isSelected" ng-click="select(item)">
+                <i></i>
+            </label>
+            <!--<input type="checkbox" ng-checked="item.isSelected" ng-click="select(item)" >-->
+        </td>
+        <td class="text-left clearfix" style="width: 315px">
+            <div class="pull-left img-box mar-right-10" ng-show="item.type != 1">
+                <img error-src ng-src="{{item.src}}" ng-show="item.isImg">
+                <img src="/client/framework/images/cad.png" ng-show="item.isCad">
+                <img src="/client/framework/images/excel.png" ng-show="item.isExcel">
+                <img src="/client/framework/images/pdf.png" ng-show="item.isPdf">
+                <img src="/client/framework/images/ppt.png" ng-show="item.isPpt">
+                <img src="/client/framework/images/word.png" ng-show="item.isWord">
+                <img src="/client/framework/images/unknown.png" ng-show="item.isOther">
+            </div>
+            <img class="pull-left mar-5" src="/client/business/cloud/images/file.png" ng-show="item.type == 1">
+            <span class="pull-left" ng-class="{'cursor-pot':item.type == 1}" title="{{item.fullName}}" ng-show="!item.showEdit" click-and-disable="goSub(item)" style="max-width:250px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">{{item.fullName}}</span>
+            <!--重命名-->
+            <form class="rename pull-left" ng-show="item.showEdit" ng-submit="confirmRename(item)">
+                <input type="text" class="form-control" ng-model="item.subName" maxlength="{{item.type == 1? 60 : 250;}}">
+                <span class="text-primary mar-left-5 cursor-pot" ng-click="confirmRename(item)">确定</span>
+                <span class="col-grey mar-left-5 cursor-pot" ng-click="item.subName = item.temp;item.showEdit = false;">取消</span>
+            </form>
+        </td>
+        <!--ui调整4.0增-->
+        <td class="text-left handle-wrap"  >
+            <div class="download" ng-show="item.type != 1" ng-class="{'isShow':visibi}" >
+                <a class="text-primary mar-right-10" ng-show="item.type != 1 && item.canDownload" href="{{item.src}}" ng-click="downloadRecord(item);handleIsShow =false" target="_blank">
+                    <img src="/client/business/cloud/images/download .png" alt="">
+                </a>
+            </div>
+
+            <div class="more"  ng-click="handleIsShow = !handleIsShow"  ng-mouseleave="handleIsShow=false" ng-class="{'isShow':visibi}">
+                <img ng-class="{'position':item.type === 1}" src="/client/business/cloud/images/more.png" alt="" >
+            </div>
+            <div class="handle" ng-show="handleIsShow" ng-mouseenter="handleIsShow =true" ng-mouseleave="handleIsShow=false">
+                <div class="text-primary cursor-pot " ng-show="item.type == 2 && item.canEdit" ng-click="moveFile(item,2);handleIsShow = false">移动</div>
+                <!-- 陈卫 时间2018.7.24 源码 -->
+                <!-- <div class="text-primary cursor-pot " ng-show="item.type == 2 && item.canDownload" ng-click="moveFile(item,1);handleIsShow = false">复制</div> -->
+                <!-- 更改后 -->
+                <div class="text-primary cursor-pot " ng-show="item.type == 1 && copyPermission" ng-click="moveFile(item,1);handleIsShow = false">复制</div>
+                <div class="text-primary cursor-pot" ng-show="item.type == 2 && item.canEdit" ng-click="moveFile(item,1);handleIsShow =false">复制</div>
+                <div class="text-primary cursor-pot " ng-show="item.type == 1" ng-click="share(item);handleIsShow =false">共享</div>
+                <div class="text-primary cursor-pot " ng-show="item.canEdit" ng-click="delete($index,item);handleIsShow =false">删除</div>
+                <div class="text-primary cursor-pot " ng-show="item.canEdit" ng-click="rename(item);handleIsShow =false">重命名</div>
+                <div class="text-primary cursor-pot" ng-click="setTop(item);handleIsShow =false" ng-if="!item.top">置顶</div>
+                <div class="text-primary cursor-pot" ng-click="cancleTop(item);handleIsShow =false" ng-if="item.top">取消置顶</div>
+            </div>
+        </td>
+        <td class="text-left">
+            <span ng-show="item.employeeName">{{item.employeeName}}</span>
+            <span ng-show="!item.employeeName">-</span>
+        </td>
+        <td class="text-left">{{item.sizeToString}}</td>
+        <td class="text-left text-primary">
+            <span class="cursor-pot" ng-show="item.shareType !=1 && item.type == 1" ng-click="showEmployee(item)">{{item.shareSize}}</span>
+            <span ng-show="item.shareType == 1 && item.type == 1">全体成员</span>
+            <span ng-show="item.type != 1">-</span>
+        </td>
+        <td class="text-left">{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
+
+    </tr>
+    </tbody>
+</table>
+
+<!--分页-->
+<div class="text-center" ng-hide="!data.length">
+    <form class="form-inline clearfix" style="display: inline-block" ng-submit="listSearch({pageNo:singlePage});singlePage = null">
+        <div class="form-group pull-left">
+            <ul uib-pagination force-ellipses="true" boundary-link-numbers="true" rotate="true" max-size="3" total-items="total" ng-model="pagesInfo.pageNo" ng-change="listSearch();" items-per-page="pagesInfo.pageSize" first-text="«" previous-text="‹"
+                next-text="›"
+                last-text="»"></ul>
+        </div>
+        <div class="form-group pull-left">
+            &nbsp;
+            <div class="input-group">
+                <span class="input-group-addon">到第</span>
+                <input type="text" class="form-control" ng-model="singlePage" style="width: 4em;"/>
+                <span class="input-group-addon">页</span>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="listSearch({pageNo:singlePage});singlePage = null">确定</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--暂无数据-->
+<div class="data-null text-center" ng-show="!data.length">
+    <img src="/client/framework/images/data-null.png" alt="">
+    <p>暂无数据</p>
+</div>

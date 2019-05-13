@@ -1,0 +1,237 @@
+.sidebar {
+    .nav-link {
+        .icon-case {
+            background: url("../static/img/icon/fun/dashboard.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-dashboard {
+            background: url("../static/img/icon/fun/dashboard.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-announce {
+            background: url("../static/img/icon/fun/announce.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-approval {
+            background: url("../static/img/icon/fun/approval.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-certificate {
+            background: url("../static/img/icon/fun/certificate.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-attendance {
+            background: url("../static/img/icon/fun/attendance.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-cloud {
+            background: url("../static/img/icon/fun/cloud.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-contract {
+            background: url("../static/img/icon/fun/contract.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-inspection {
+            background: url("../static/img/icon/fun/inspection.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-invoice {
+            background: url("../static/img/icon/fun/invoice.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-knowledge {
+            background: url("../static/img/icon/fun/knowledge.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-project {
+            background: url("../static/img/icon/fun/project.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-projectworklog {
+            background: url("../static/img/icon/fun/projectworklog.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-quality {
+            background: url("../static/img/icon/fun/quality.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-report {
+            background: url("../static/img/icon/fun/report.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-security {
+            background: url("../static/img/icon/fun/security.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-system {
+            background: url("../static/img/icon/fun/system.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-task {
+            background: url("../static/img/icon/fun/task.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-labormanage {
+            background: url("../static/img/icon/fun/labormanage.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-inventory {
+            background: url("../static/img/icon/fun/inventory.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-purchase {
+            background: url("../static/img/icon/fun/purchase.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-basicsetting {
+            background: url("../static/img/icon/fun/basicsetting.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-wisdom {
+            background: url("../static/img/icon/fun/wisdom.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        &.active,
+        &:hover {
+            .icon-case {
+                background: url("../static/img/icon/fun/dashboard-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-dashboard {
+                background: url("../static/img/icon/fun/dashboard-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-announce {
+                background: url("../static/img/icon/fun/announce-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-approval {
+                background: url("../static/img/icon/fun/approval-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-certificate {
+                background: url("../static/img/icon/fun/certificate-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-attendance {
+                background: url("../static/img/icon/fun/attendance-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-cloud {
+                background: url("../static/img/icon/fun/cloud-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-contract {
+                background: url("../static/img/icon/fun/contract-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-inspection {
+                background: url("../static/img/icon/fun/inspection-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-invoice {
+                background: url("../static/img/icon/fun/invoice-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-knowledge {
+                background: url("../static/img/icon/fun/knowledge-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-project {
+                background: url("../static/img/icon/fun/project-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-projectworklog {
+                background: url("../static/img/icon/fun/projectworklog-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-quality {
+                background: url("../static/img/icon/fun/quality-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-report {
+                background: url("../static/img/icon/fun/report-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-security {
+                background: url("../static/img/icon/fun/security-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-system {
+                background: url("../static/img/icon/fun/system-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-task {
+                background: url("../static/img/icon/fun/task-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-labormanage {
+                background: url("../static/img/icon/fun/labormanage-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-inventory {
+                background: url("../static/img/icon/fun/inventory-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-purchase {
+                background: url("../static/img/icon/fun/purchase-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-basicsetting {
+                background: url("../static/img/icon/fun/basicsetting-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .icon-wisdom {
+                background: url("../static/img/icon/fun/wisdom-active.png");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    }
+}

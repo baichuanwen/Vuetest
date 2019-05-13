@@ -1,0 +1,209 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: $sidebar-padding;
+    color: $sidebar-color;
+    background: $gcbSidebarColor;
+    @include borders($sidebar-borders);
+    .sidebar-close {
+        position: absolute;
+        right: 0;
+        display: none;
+        padding: 0 $spacer;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: $navbar-height;
+        color: $sidebar-color;
+        background: 0;
+        border: 0;
+        opacity: .8;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .sidebar-header {
+        flex: 0 0 $sidebar-header-height;
+        padding: .75rem 1rem;
+        text-align: center;
+        background: $sidebar-header-bg;
+    }
+    .sidebar-nav {
+        position: relative;
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        @include sidebar-width($sidebar-borders, $sidebar-width);
+        &::-webkit-scrollbar {
+            position: absolute;
+            width: 0px;
+            margin-left: 0px;
+            -webkit-appearance: none;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: lighten($sidebar-bg, 5%);
+            border-right: 1px solid darken($sidebar-bg, 5%);
+            border-left: 1px solid darken($sidebar-bg, 5%);
+        }
+        &::-webkit-scrollbar-thumb {
+            height: 50px;
+            background-color: darken($sidebar-bg, 10%);
+            background-clip: content-box;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 1px 2px;
+        }
+    }
+    .nav {
+        @include sidebar-width($sidebar-borders, $sidebar-width);
+        flex-direction: column;
+        min-height: 100%;
+        background-color: $gcbSidebarColor;
+    }
+    .nav-divider,
+    .divider {
+        height: 10px;
+    }
+    .nav-item {
+        position: relative;
+        margin: 0;
+        transition: background .3s ease-in-out;
+    }
+    .nav-link {
+        display: block;
+        padding: .75rem 1rem;
+        color: $sidebar-nav-link-color;
+        text-decoration: none;
+        background: $sidebar-nav-link-bg;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        @include borders(0);
+        @if $enable-sidebar-nav-rounded {
+            border-radius: $border-radius;
+        }
+        i {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: 0 1rem 0 0;
+            font-size: 14px;
+            text-align: center;
+        }
+        .badge {
+            float: right;
+            margin-top: 2px;
+        }
+        &.active {
+            color: $gcbMianColor;
+            background: #fff;
+            @include borders(0);
+        }
+        &:hover {
+            color: $gcbMianColor!important;
+            background: #fff;
+            @include borders(0);
+        }
+    }
+    @if (lightness( $sidebar-bg) < 40) {
+        .progress {
+            background-color: lighten($sidebar-bg, 15%) !important;
+        }
+    }
+    .sidebar-minimizer {
+        position: relative;
+        flex: 0 0 $sidebar-minimizer-height;
+        background-color: $gcbSidebarColor;
+        border: 0;
+        @include borders(0);
+        &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: $sidebar-minimizer-height;
+            height: $sidebar-minimizer-height;
+            content: "";
+            background-image: $sidebar-minimizer-indicator;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: $sidebar-minimizer-height / 4;
+            transition: .3s;
+        }
+        &:focus,
+        &.focus {
+            outline: 0;
+        }
+        &:hover {
+            background-color: $gcbSidebarColor;
+            &::before {
+                background-image: $sidebar-minimizer-hover-indicator;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    // Minimized Sidebar
+    .sidebar-minimized {
+        .hidden-cn {
+            display: none;
+        }
+        .sidebar {
+            z-index: $zindex-sticky - 1;
+            .sidebar-nav {
+                @include sidebar-width($sidebar-borders, $sidebar-minimized-width);
+            }
+            .nav {
+                @include sidebar-width($sidebar-borders, $sidebar-minimized-width);
+            }
+            .nav-divider,
+            .divider,
+            .sidebar-form,
+            .sidebar-header {
+                display: none;
+            }
+            .sidebar-minimizer::before {
+                width: 100%;
+                transform: rotate(-180deg);
+            }
+            .nav-item {
+                width: $sidebar-minimized-width;
+                overflow: hidden;
+                border-left: 0 !important;
+                &:hover {
+                    width: $sidebar-width + $sidebar-minimized-width;
+                    overflow: visible;
+                    >.nav-link {
+                        background: #fff;
+                    }
+                }
+            }
+            .nav-link {
+                position: relative;
+                padding-left: 0;
+                margin: 0;
+                white-space: nowrap;
+                border-left: 0 !important;
+                width: $sidebar-width + $sidebar-minimized-width;
+                i {
+                    display: block;
+                    float: left;
+                    width: $sidebar-minimized-height;
+                    font-size: 18px;
+                }
+                .badge {
+                    position: absolute;
+                    right: 15px;
+                    display: none;
+                }
+                &:hover {
+                    width: $sidebar-width + $sidebar-minimized-width;
+                    background: #fff;
+                    .badge {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+}

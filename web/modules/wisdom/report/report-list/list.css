@@ -1,0 +1,391 @@
+a {
+    cursor: pointer;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w90 {
+    width: 90px;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.modal-width-750 {
+    width: 750px;
+}
+
+.col-grey {
+    color: #939BA4;
+}
+
+.line-height-34 {
+    line-height: 34px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.tabs-secondary {
+    padding: 15px 0 0;
+}
+/*tab栏*/
+.nav-tabs{
+    margin-top: 10px;
+}
+.nav-tabs>li{
+    width: 140px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: -2px;
+}
+.nav-tabs>li.active{
+    border-bottom: 2px solid #248bfe;
+}
+.nav-tabs>li>a{
+    height: 18px;
+    line-height: 18px;
+    padding: 0;
+    border: none;
+    margin: 20px 0;
+    color: #939ba4;
+    border-right: 1px dashed #939ba4;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,.nav-tabs>li>a:hover{
+    border: none;
+    border-right: 1px dashed #939ba4;
+    background-color: transparent;
+}
+
+/*头部筛选条件*/
+
+.header {
+    padding: 0 20px;
+    margin-top: 30px;
+}
+.header .header_item .filter {
+    margin-right: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.header .header_item .input-group {
+    width: 210px;
+    float: left;
+}
+
+.header .header_item .form-group {
+    margin-bottom: 0;
+    width: 300px;
+}
+
+
+/*选择项目*/
+
+.header .project_select {
+    position: relative;
+    padding-left: 45px;
+}
+
+.header .project_select>span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*width: 45px;*/
+    line-height: 40px;
+}
+
+.header .project_select .selected {
+    padding-right: 100px;
+    position: relative;
+    min-height: 40px;
+}
+
+.header .project_select .selected_item {
+    box-sizing: border-box;
+    padding: 0 10px;
+    /*max-width: 200px;*/
+    max-width: 230px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    margin: 0 10px;
+    position: relative;
+}
+
+.header .project_select .selected_item.active {
+    background-color: #f4f4f4;
+}
+
+.header .project_select .selected_close {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    color: #AAAAAA;
+    cursor: pointer;
+    line-height: normal;
+}
+
+.header .project_select .selected_btn {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.header .project_select .selected_btn.none {
+    position: static;
+    margin-left: 20px;
+}
+/*选择合同*/
+.header .contract_select{
+    padding-left: 70px;
+}
+/*主体*/
+
+.content {
+    padding: 60px 0 20px;
+}
+
+.content .list {
+    margin-top: 10px;
+    box-shadow: 0 5px 15px #dae3ef, 0 0 1px #dae3ef, 0 0 1px #dae3ef;
+}
+
+.content .item {
+    padding: 20px 110px;
+    cursor: pointer;
+    position: relative;
+}
+
+.content .item.active {
+    background-color: #F8F8F8;
+}
+
+.content .item .avatar_box {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.content .item .avatar_box img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.content .item .text_box {
+    padding-left: 20px;
+    min-height: 90px;
+    width: 70%;
+}
+
+.content .item .text_box p {
+    margin-bottom: 4px;
+}
+
+.content .item .text_box p:last-of-type {
+    margin: 0;
+}
+
+.content .item .text_box p>span {
+    float: left;
+}
+
+.content .item .text_box .project_name {
+    width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.content .item .price {
+    width: 30%;
+    padding-left: 50px;
+}
+
+.content .item .price p:last-of-type {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.content .item .status_box {
+    width: 90px;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    text-align: center;
+}
+
+.content-price {
+    color: #333;
+    vertical-align: bottom;
+    display: inline-block;
+    font-size: 16px;
+    padding-right: 40px;
+}
+
+.content-price i{
+    color: #248bfe;
+    padding-right: 5px;
+    font-style:normal;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.content-total {
+    height: 34px;
+    line-height: 50px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+.content-total label {
+    color: #248bfe;
+    margin: 0 3px;
+}
+
+.bs-component {
+    margin-top: 10px;
+}
+/*表格*/
+.table tbody tr{
+    cursor: pointer;
+}
+.content .table tr td{
+    border: none;
+}
+
+
+#filter-condition .modal {
+    position: relative;
+}
+
+#filter-condition .modal-dialog {
+    width: 99.9%;
+    margin: 22px 1px;
+}
+
+#filter-condition .modal-content {
+    border: #a4abb2;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#project_select .modal-body .projects .item{
+    width:auto;
+}
+/*日期控件*/
+/*.uib-datepicker-popup .btn-default{*/
+/*border-color: transparent;*/
+/*!*padding: 5px 20px;*!*/
+/*}*/
+
+/*.uib-datepicker-popup thead tr:last-of-type{*/
+/*background-color: #F1F1F1;*/
+/*height: 30px;*/
+/*border-top: 1px solid #CCCCCC;*/
+/*border-bottom: 1px solid #CCCCCC;*/
+/*}*/
+
+/*.uib-datepicker-popup .btn-info.active{*/
+/*background-color: transparent;*/
+/*border-color: #00a0e9;*/
+/*color: #00a0e9;*/
+/*}*/
+
+/*选择周*/
+.weeks{
+    position: relative;
+}
+
+.week-box{
+    position: absolute;
+    top: 34px;
+    /*height: 250px;*/
+    min-width: 442px;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding-top: 5px;
+    z-index: 100;
+}
+
+.week-box .btn-default{
+    border-color: transparent;
+}
+
+.week-box_header--year{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.week-box_info{
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 8px 0;
+    background-color: #F1F1F1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.week-box_info div:first-of-type{
+    border-right: 1px solid #CCCCCC;
+
+}
+
+.week-box_content{
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.week-box_content .btn-default.active{
+    border-color: #248bfe;
+    color: #248bfe;
+    background-color: transparent;
+}
+
+.week-box_content div{
+    width: 220px;
+    padding: 20px;
+    /*height: 160px;*/
+}
+
+.week-box_content>div:last-of-type{
+    width: 219px;
+    border-left: 1px solid #CCCCCC;
+}
+
+.week-box_footer{
+    padding: 20px;
+}
+
+.week-box_footer .btn-default{
+    border-color: #CCCCCC;
+}
+ #workReportTotal .table tbody tr:nth-of-type(1){
+    font-weight: 700;
+}
+#reportDetailTable .table thead tr th{
+    min-width: 66px;
+}
+#reportDetailTable .table tr td{
+    max-width: 150px;
+}
+.text-left{
+    text-align: left;
+}

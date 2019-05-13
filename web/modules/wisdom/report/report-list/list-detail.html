@@ -1,0 +1,222 @@
+<link rel="stylesheet" href="/client/business/wisdom/report/report-list/list.css?version=5.0">
+<div class="pull-left font-18" style="margin-top: -44px;" ng-show="routeParams.type !=3">
+    <span>工作汇报统计表</span>
+</div>
+<div class="pull-left font-18" style="margin-top: -44px;" ng-show="routeParams.type ==3">
+    <span>工作汇报明细表</span>
+</div>
+<div class="pull-right font-18" style="margin-top: -44px;">
+    <button class="btn btn-default w90 ml5" ng-click="back()">返回</button>
+</div>
+<div class="header" style="margin-top: 60px;padding-right: 0;margin-bottom: 30px">
+    <div class="header_item clearfix line-height-34">
+        <span class="col-grey pull-left">部门：</span>
+        <div class="mar-left-10 pull-left">
+            <span class="mar-left-10">{{routeParams.departmentName}}</span>
+        </div>
+    </div>
+    <!--日期-->
+    <div class="header_item clearfix line-height-34">
+        <span class="col-grey pull-left">时间：</span>
+        <div class="mar-left-10 pull-left">
+            <span class="mar-left-10">{{routeParams.month ? routeParams.year+'年' + (routeParams.month-0+1)+'月' : routeParams.year+'年'}}</span>
+        </div>
+        <div class="pull-right">
+            <span style="line-height: 34px;" class="content-total">共<lable style="color: #248bfe">{{ infos.items.total||0 }}</lable>条记录</span>
+            <button class="btn btn-primary btn-width-90" ng-if="infos.items.total && authority(225)" ng-click="exportClick()">导出</button>
+        </div>
+        <div class="clearfix" style="height: 34px;"></div>
+    </div>
+</div>
+<!--内容-->
+<div class="content" style="padding: 5px 0 20px;margin-top: -14px" ng-show="infos.items.records.length" id="reportDetailTable">
+    <div class="bs-component contract-table" style="overflow-x: scroll">
+        <!--日报年度-->
+        <table class="table table-striped table-hover" ng-show="!routeParams.month && routeParams.type !=3">
+            <thead>
+            <tr>
+                <th width="100px;" rowspan="2">序号</th>
+                <th style="text-align: left" rowspan="2">姓名</th>
+                <th style="text-align: left" rowspan="2" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">部门</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-01</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-02</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-03</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-04</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-05</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-06</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-07</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-08</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-09</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-10</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-11</th>
+                <th style="text-align: center" colspan="2">{{infos.year}}-12</th>
+            </tr>
+            <tr>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+                <th style="text-align: right">已提交</th>
+                <th style="text-align: right">未提交</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in infos.items.records track by $index">
+                <td>{{(params.pageNo-1)*params.pageSize+1+$index}}</td>
+                <td style="text-align: left">{{ item.employeeName }}</td>
+                <td data-toggle="tooltip" title="{{item.departmentName}}" style="text-align: left;width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{ item.departmentName }}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[0]>=0?'#666666':'red'}" ng-click="dailyReportYear(0,routeParams.departmentName)">{{ item.submittedCounts[0]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[0]>=0?'#666666':'red'}" ng-click="dailyReportYear(0,routeParams.departmentName)">{{ item.unsubmittedCounts[0]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[1]>=0?'#666666':'red'}" ng-click="dailyReportYear(1,routeParams.departmentName)">{{ item.submittedCounts[1]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[1]>=0?'#666666':'red'}" ng-click="dailyReportYear(1,routeParams.departmentName)">{{ item.unsubmittedCounts[1]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[2]>=0?'#666666':'red'}" ng-click="dailyReportYear(2,routeParams.departmentName)">{{ item.submittedCounts[2]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[2]>=0?'#666666':'red'}" ng-click="dailyReportYear(2,routeParams.departmentName)">{{ item.unsubmittedCounts[2] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[3]>=0?'#666666':'red'}" ng-click="dailyReportYear(3,routeParams.departmentName)">{{ item.submittedCounts[3] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[3]>=0?'#666666':'red'}" ng-click="dailyReportYear(3,routeParams.departmentName)">{{ item.unsubmittedCounts[3]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[4]>=0?'#666666':'red'}" ng-click="dailyReportYear(4,routeParams.departmentName)">{{ item.submittedCounts[4] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[4]>=0?'#666666':'red'}" ng-click="dailyReportYear(4,routeParams.departmentName)">{{ item.unsubmittedCounts[4]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[5]>=0?'#666666':'red'}" ng-click="dailyReportYear(5,routeParams.departmentName)">{{ item.submittedCounts[5] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[5]>=0?'#666666':'red'}" ng-click="dailyReportYear(5,routeParams.departmentName)">{{ item.unsubmittedCounts[5]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[6]>=0?'#666666':'red'}" ng-click="dailyReportYear(6,routeParams.departmentName)">{{ item.submittedCounts[6]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[6]>=0?'#666666':'red'}" ng-click="dailyReportYear(6,routeParams.departmentName)">{{ item.unsubmittedCounts[6] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[7]>=0?'#666666':'red'}" ng-click="dailyReportYear(7,routeParams.departmentName)">{{ item.submittedCounts[7] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[7]>=0?'#666666':'red'}" ng-click="dailyReportYear(7,routeParams.departmentName)">{{ item.unsubmittedCounts[7]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[8]>=0?'#666666':'red'}" ng-click="dailyReportYear(8,routeParams.departmentName)">{{ item.submittedCounts[8] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[8]>=0?'#666666':'red'}" ng-click="dailyReportYear(8,routeParams.departmentName)">{{ item.unsubmittedCounts[8]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[9]>=0?'#666666':'red'}" ng-click="dailyReportYear(9,routeParams.departmentName)">{{ item.submittedCounts[9]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[9]>=0?'#666666':'red'}" ng-click="dailyReportYear(9,routeParams.departmentName)">{{ item.unsubmittedCounts[9]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[10]>=0?'#666666':'red'}" ng-click="dailyReportYear(10,routeParams.departmentName)">{{ item.submittedCounts[10]}}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[10]>=0?'#666666':'red'}" ng-click="dailyReportYear(10,routeParams.departmentName)">{{ item.unsubmittedCounts[10] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.submittedCounts[11]>=0?'#666666':'red'}" ng-click="dailyReportYear(11,routeParams.departmentName)">{{ item.submittedCounts[11] }}</td>
+                <td style="text-align: right" ng-style="{'color': item.unsubmittedCounts[11]>=0?'#666666':'red'}" ng-click="dailyReportYear(11,routeParams.departmentName)">{{ item.unsubmittedCounts[11] }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--日报月度-->
+        <table class="table table-striped table-hover" ng-show="routeParams.month && routeParams.type !=3">
+            <thead>
+            <tr>
+                <th width="100px;" rowspan="2">序号</th>
+                <th rowspan="2">姓名</th>
+                <th rowspan="2" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">部门</th>
+                <th style="text-align: center" colspan="2">{{routeParams.year}}-{{routeParams.month-0+1}}</th>
+            </tr>
+            <tr>
+                <th style="text-align: center">已提交</th>
+                <th style="text-align: center">未提交</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in infos.items.records track by $index" ng-click="dailyReportMonth(routeParams.month,routeParams.departmentName)">
+                <td>{{(params.pageNo-1)*params.pageSize+1+$index}}</td>
+                <td>{{ item.employeeName }}</td>
+                <td data-toggle="tooltip" title="{{item.departmentName}}" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{ item.departmentName }}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[0]>=0?'#666666':'red'}">{{ item.submittedCounts[0]}}</td>
+                <td style="text-align: center" ng-style="{'color': item.unsubmittedCounts[0]>=0?'#666666':'red'}">{{ item.unsubmittedCounts[0]}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--月报-->
+        <table class="table table-striped table-hover" ng-show="!routeParams.month && routeParams.type ==3">
+            <thead>
+            <tr>
+                <th width="100px;" rowspan="2">序号</th>
+                <th rowspan="2">姓名</th>
+                <th rowspan="2" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">部门</th>
+                <th style="text-align: center">{{infos.year}}-01</th>
+                <th style="text-align: center">{{infos.year}}-02</th>
+                <th style="text-align: center">{{infos.year}}-03</th>
+                <th style="text-align: center">{{infos.year}}-04</th>
+                <th style="text-align: center">{{infos.year}}-05</th>
+                <th style="text-align: center">{{infos.year}}-06</th>
+                <th style="text-align: center">{{infos.year}}-07</th>
+                <th style="text-align: center">{{infos.year}}-08</th>
+                <th style="text-align: center">{{infos.year}}-09</th>
+                <th style="text-align: center">{{infos.year}}-10</th>
+                <th style="text-align: center">{{infos.year}}-11</th>
+                <th style="text-align: center">{{infos.year}}-12</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in infos.items.records track by $index">
+                <td>{{(params.pageNo-1)*params.pageSize+1+$index}}</td>
+                <td>{{ item.employeeName }}</td>
+                <td data-toggle="tooltip" title="{{item.departmentName}}" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{ item.departmentName }}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[0] ? '#666666':'red'}">{{ item.submittedCounts[0] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[1] ? '#666666':'red'}">{{ item.submittedCounts[1] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[2] ? '#666666':'red'}">{{ item.submittedCounts[2] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[3] ? '#666666':'red'}">{{ item.submittedCounts[3] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[4] ? '#666666':'red'}">{{ item.submittedCounts[4] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[5] ? '#666666':'red'}">{{ item.submittedCounts[5] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[6] ? '#666666':'red'}">{{ item.submittedCounts[6] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[7] ? '#666666':'red'}">{{ item.submittedCounts[7] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[8] ? '#666666':'red'}">{{ item.submittedCounts[8] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[9] ? '#666666':'red'}">{{ item.submittedCounts[9] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[10] ?'#666666':'red'}">{{ item.submittedCounts[10] ? '√': '×'}}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[11] ?'#666666':'red'}">{{ item.submittedCounts[11] ? '√': '×'}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--月报-->
+        <table class="table table-striped table-hover" ng-show="routeParams.month && routeParams.type ==3">
+            <thead>
+            <tr>
+                <th width="100px;" rowspan="2">序号</th>
+                <th>姓名</th>
+                <th style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">部门</th>
+                <th style="text-align: center">{{routeParams.year}}-{{routeParams.month - 0 + 1}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in infos.items.records track by $index">
+                <td>{{(params.pageNo-1)*params.pageSize+1+$index}}</td>
+                <td>{{ item.employeeName }}</td>
+                <td data-toggle="tooltip" title="{{item.departmentName}}" style="width:100px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{ item.departmentName }}</td>
+                <td style="text-align: center" ng-style="{'color': item.submittedCounts[0] ?'#666666':'red'}">{{ item.submittedCounts[0] ? '√': '×'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--分页-->
+<form class="form-inline clearfix center-block pull-right" ng-submit="goToPage()" ng-show="infos.items.records.length">
+    <div class="form-group pull-left">
+        <ul uib-pagination force-ellipses="true" boundary-link-numbers="true" rotate="true" max-size="5" total-items="total" ng-model="params.pageNo"
+            ng-change="listSearch(params.pageNo);" items-per-page="params.pageSize" first-text="首页"
+            previous-text="上一页" next-text="下一页" last-text="尾页"></ul>
+    </div>
+    <div class="form-group pull-left">
+        &nbsp;
+        <div class="input-group">
+            <span class="input-group-addon">到第</span>
+            <input type="number" ng-model="goPage" class="form-control" style="width: 5em;" />
+            <span class="input-group-addon">页</span>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="goToPage()" type="button">确定</button>
+            </span>
+        </div>
+    </div>
+</form>
+<!--暂无数据-->
+<div class="data-null text-center" ng-show="!infos.items.records.length" style="display: none">
+    <img src="/client/framework/images/data-null.png" alt="">
+    <p>暂无数据</p>
+</div>
