@@ -88,7 +88,7 @@
           this.$router.push({name:'reportEdit', params:{id:id}})
         },
         // 跳转详情
-        showDetail (userId) {
+        showDetail (userId){
           this.$emit("showDetail2",userId)
         }
       },
