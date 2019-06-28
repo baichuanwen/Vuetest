@@ -55,6 +55,12 @@
       </Col>
       <Col span="12">&nbsp;</Col>
     </Row>
+    <div id="announce-add-top">
+
+    </div>
+    <alert-box>
+      Something bad happened.
+    </alert-box>
   </div>
 </template>
 
@@ -65,7 +71,26 @@
     getFileType
   } from '@/libs/tools'
   import report from '../module';
+  import Vue   from "vue";
   import reportDate from '../components/reportDate';
+  let Profile = Vue.extend({
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+    data: function () {
+      return {
+        firstName: 'Walter',
+        lastName: 'White',
+        alias: 'Heisenberg'
+      }
+    }
+  });
+  Vue.component('alert-box', {
+    template: `
+    <div class="demo-alert-box">
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+  });
   export default {
     name: 'announce-add',
     data() {
@@ -160,7 +185,9 @@
       },
     },
     mounted () {
-
+      new Profile({
+        "el":"#announce-add-top"
+      })
     }
   }
 </script>
