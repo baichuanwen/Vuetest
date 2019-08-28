@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import user from './modules/user'
 import sidebar from './modules/sidebar'
 import demo from './modules/demo'
+import cloud from './modules/cloud'
 
 
 // vuex文档
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     modules: {
         user,
         sidebar,
-        demo
+        demo,
+        cloud
     }
 })

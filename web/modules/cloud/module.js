@@ -32,6 +32,14 @@ let cloud = {
           component: resolve => require(['@/modules/cloud/cloud-enterprise/CloudEnterprise.vue'], resolve)
         },
         {
+          path: 'cloudEnterpriseSub/:id',
+          name: 'cloudEnterpriseSub',
+          meta: {
+            title: '企业文档sub',
+          },
+          component: resolve => require(['@/modules/cloud/cloud-enterprise/cloudEnterpriseSub.vue'], resolve)
+        },
+        {
           path: 'cloudProject',
           name: 'cloudProject',
           meta: {
@@ -51,19 +59,20 @@ let cloud = {
       ]
     },
     api: {
-      myFileSearch(request) { return axiosHandle('post',"/web/cloudDiskTransmissionRecord/search", request) }
+      myFileSearch(request) { return axiosHandle('post',"web/cloudDisk/search", request) },
       // listSearch: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/search"), request); },
       // listSearchDown: function (request) { return $http.post(getSystemServerUrl("/cloudDisk/searchDown"), request); },
-      // createFile: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/add"), request); },
-      // renameFile: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/rename"), request); },
-      // deleteFile: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/delete"), request); },
-      // uploadSuccess: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/uploadSuccess"), request); },
+       createFile(request) { return axiosHandle('post',"web/cloudDisk/add", request); },
+       renameFile(request) { return axiosHandle('post',"web/cloudDisk/rename", request) },
+      deleteFile(request) { return axiosHandle('post',"web/cloudDisk/delete", request) },
+       uploadSuccess(request) { return axiosHandle('post',"web/cloudDisk/uploadSuccess", request) },
       // findShares: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/findShares"), request); },
       // editShare: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/editShare"), request); },
       // quitShare: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/quitShare"), request); },
-      // fileRemoval: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/fileRemoval"), request); },
-      // setTop: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/setTop"), request); },
-      // cancelTop: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/cancelTop"), request); },
+       fileRemoval(request) {  return axiosHandle('post',"web/cloudDisk/fileRemoval", request) },
+      getOnlineUrl(request) { return axiosHandle('post',"web/previewOnline/getOnlineUrl", request)},
+      setTop(request) {  return axiosHandle('post',"web/cloudDisk/setTop", request) },
+      cancelTop(request) { return axiosHandle('post',"web/cloudDisk/cancelTop", request) },
       // // 4.0增查询父级共享人员及部门
       // findCloudDiskPersionInfo : function(request) { return $http.post(getSystemServerUrl("/cloudDisk/findCloudDiskPersionInfo"), request); },
       //
@@ -76,9 +85,9 @@ let cloud = {
       // myFileUploadSuccess: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTransmissionRecord/uploadSuccess"), request); },
       // myFileRemoval: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTransmissionRecord/fileRemoval"), request); },
       // myFilesetTop: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTransmissionRecord/setTop"), request); },
-      // myFilecancelTop: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTransmissionRecord/cancelTop"), request); },
-      // fileCopy: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/folderRemoval"), request); },
-      // myFileCopy: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTransmissionRecord/folderRemoval"), request); }
+      // myFilecancelTop: function(request) { return $http.post(getSystemServerUrl("/cloudDiskTansmissionRecord/cancelTop"), request); },
+       fileCopy: function(request) { return  axiosHandle('post',"web/cloudDisk/folderRemoval", request); },
+       myfileCopy(request) { return  axiosHandle('post',"web/cloudDiskTransmissionRecord/folderRemoval", request); }
   }
 }
 export default cloud

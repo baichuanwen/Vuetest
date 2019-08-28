@@ -16,7 +16,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
         	"/api" : {
-		        target : "https://dev.gcb365.com/api",
+		        target : "https://a.gcb365.com/api",
 		        changeOrigin:true,
 		        pathRewrite:{
 		        	"^/api":""

@@ -20,7 +20,7 @@ export const buildDownloadUrl = (uuid) => {
   if (!uuid || uuid.length < 32) {
     return null
   }
-  return Config.apiHost + "/web/file/download?uuid=" + uuid;
+  return Config.apiHost + "web/file/download?uuid=" + uuid;
 }
 
 export const forEach = (arr, fn) => {
@@ -434,7 +434,7 @@ export const getFileType=(item) =>{
     isWord: false,
     isOther: false
   };
-  var fileName = item.fileName,
+  var fileName = item.fileName||item.attachmentSuffix||".",
     suffix = fileName.split("."),
     imgReg = /^(jpg|png|gif|bmp|jpeg)$/i,
     excelReg = /^(xls|xlsx|xlsm|xlt|xltx|xltm)$/i,

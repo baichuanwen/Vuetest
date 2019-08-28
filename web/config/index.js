@@ -52,8 +52,8 @@ export default {
     dev: true,
     // 接口配置 //http://dev.lecons.cn/api
     // apiHost: 'http://dev.lecons.cn/api/',
-    host: 'https://dev.gcb365.com/',
-    apiHost: 'https://dev.gcb365.com/api/',
+    host: 'https://a.gcb365.com/',
+    apiHost: 'https://a.gcb365.com/api/',
     // token在Cookie中存储的天数，默认1天
     cookieExpires: 1,
     // 模块

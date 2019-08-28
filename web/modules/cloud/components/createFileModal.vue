@@ -1,15 +1,15 @@
 <template>
   <b-modal id="readModal" size="lg"  class="w-700"   ref="gcbReadRecords" >
-    <div slot="modal-header">创建共享文件夹</div>
+    <div slot="modal-header">新建文件夹</div>
     <div class="modal-content">
       <div class="modal-body clearfix newTypeModal">
-        <div>请输入共享文件夹名称：</div>
+        <div>请输入新建文件夹名称：</div>
         <div style="width: 100%;padding:10px 0 5px 0;">
           <input type="text" autofocus class="form-control" :maxlength="60" style="width: 100%;" v-model="sharePubName">
         </div>
         <div class="clearfix">
               <span class="text-danger" v-show="isnull">
-                  共享文件夹名称不能为空
+                 新建文件夹名称不能为空
               </span>
           <span class="colGrey pull-right" style="color:#bdc7d2;">
                   {{sharePubName.length||0}}/60
@@ -36,6 +36,9 @@
       value:{
         default:null,
       },
+      files:{
+        type:Array
+      }
     },
     methods:{
       open() {
@@ -44,6 +47,7 @@
       },
       close() {
         this.$refs.gcbReadRecords.hide();
+        this.files=[];
       },
       handleAction() {
         if(this.sharePubName==''||this.sharePubName==undefined){
@@ -57,7 +61,7 @@
       },
     },
     mounted(){
-
+    console.log( this.files)
     }
   }
 </script>

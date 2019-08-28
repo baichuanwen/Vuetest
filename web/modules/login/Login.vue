@@ -148,7 +148,7 @@ export default {
         password: "",
         isAutoLogin: "false"
       },
-      host: "https://dev.gcb365.com/api",
+      host: "https://a.gcb365.com/api",
       errorMessage: "",
       browserType: null,
       loginType: 1,

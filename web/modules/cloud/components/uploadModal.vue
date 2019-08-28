@@ -1,20 +1,23 @@
 <template>
   <b-modal id="readModal" size="lg"  class="w-700"   ref="gcbReadRecords" >
-    <div slot="modal-header">创建共享文件夹</div>
+    <div slot="modal-header">上传文件</div>
     <div class="modal-content">
-      <div class="modal-body clearfix newTypeModal">
-        <div>请输入共享文件夹名称：</div>
-        <div style="width: 100%;padding:10px 0 5px 0;">
-          <input type="text" autofocus class="form-control" :maxlength="60" style="width: 100%;" v-model="sharePubName">
-        </div>
-        <div class="clearfix">
-              <span class="text-danger" v-show="isnull">
-                  共享文件夹名称不能为空
-              </span>
-          <span class="colGrey pull-right" style="color:#bdc7d2;">
-                  {{sharePubName.length||0}}/60
-          </span>
-        </div>
+      <div class="modal-body clearfix">
+        <Table stripe :columns="columns4" :data="data1"  @on-selection-change="show">
+          <template slot-scope="{ row, index }" slot="fullName" >
+            <div class="pull-left img-box mar-right-10" v-show="row.type != 1" style="cursor: pointer" @click="goSub(row)">
+<!--          <img :src="row.src" v-show="showType(row).isImg" style="height: 30px; width: 30px;">-->
+              <img src="../cad.png" v-show="showType(row).isCad">
+              <img src="../excel.png" v-show="showType(row).isExcel">
+              <img src="../pdf.png" v-show="showType(row).isPdf">
+              <img src="../ppt.png" v-show="showType(row).isPpt">
+              <img src="../word.png" v-show="showType(row).isWord">
+              <img src="../unknown.png" v-show="showType(row).isOther">
+            </div>
+            <img class="pull-left " src="../file.png" style="cursor: pointer" v-show="row.type == 1" ">
+            <span  class="mar-left-5" style="cursor: pointer">{{row.fullName}}</span>
+          </template>
+        </Table>
       </div>
     </div>
     <div slot="modal-footer">
@@ -25,19 +28,71 @@
 </template>
 
 <script>
+  import { buildDownloadUrl, getFileType, getFileSize } from "@/libs/tools";
   export default {
    data(){
      return{
        sharePubName:"",
        isnull:false,
+       columns4: [
+         {
+           type: 'selection',
+           width: 60,
+           align: 'center',
+           sortable: true
+         },
+         {
+           title: '文件名',
+           key: 'fullName',
+           slot:"fullName"
+         },
+        ,
+         {
+           title: '大小',
+           key: 'sizeToString',
+           sortable: true
+         },
+
+         {
+           title: '所在目录',
+           key: 'opt',
+           slot:"opt"
+         },
+         {
+           title: '状态',
+           key: 'sizeToString',
+           sortable: true
+         }
+
+       ],
      }
    },
     props:{
       value:{
         default:null,
       },
+      data1:{
+        type: Array
+      },
     },
     methods:{
+      getfiles() {
+        if (this.attachments && this.attachments.length) {
+          this.attachments.map((v, index) => {
+            this.appendix.push(v.uuid);
+            v.src = buildDownloadUrl(v.uuid, v.fileName);
+            if (getFileType(v).isImg) {
+              this.imgs.push(v);
+            } else {
+              this.files.push(v);
+            }
+          })
+          this.$emit("input", this.appendix);
+        }
+      },
+      showType(item) {
+        return getFileType(item);
+      },
       open() {
         this.sharePubName='';
         this.$refs.gcbReadRecords.show();
@@ -57,7 +112,7 @@
       },
     },
     mounted(){
-
+        console.log(this.files)
     }
   }
 </script>
