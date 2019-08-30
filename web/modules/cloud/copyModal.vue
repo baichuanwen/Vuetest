@@ -40,12 +40,10 @@
         type: String,
         default: ''
       },
-      item:{
-        type: Object
-      },
     },
     data() {
       return {
+        item:null,
         request :{
           fileSubjectionType: 1,
           condition: null,
@@ -142,6 +140,7 @@
       open(item) {
         this.$refs.gcbModal.show();
         if(item){
+          this.item=item;
           this.fromFloderId=item.id;
         }
         this.curItem={},

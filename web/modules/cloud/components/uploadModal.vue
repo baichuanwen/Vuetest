@@ -1,67 +1,73 @@
 <template>
-  <b-modal id="readModal" size="lg"  class="w-700"   ref="gcbReadRecords" >
+  <b-modal id="readModal" size="lg"  class="w-700"    ref="gcbReadRecords" >
     <div slot="modal-header">上传文件</div>
-    <div class="modal-content">
+    <div class="modal-content  h-400" >
       <div class="modal-body clearfix">
-        <Table stripe :columns="columns4" :data="data1"  @on-selection-change="show">
-          <template slot-scope="{ row, index }" slot="fullName" >
-            <div class="pull-left img-box mar-right-10" v-show="row.type != 1" style="cursor: pointer" @click="goSub(row)">
-<!--          <img :src="row.src" v-show="showType(row).isImg" style="height: 30px; width: 30px;">-->
-              <img src="../cad.png" v-show="showType(row).isCad">
-              <img src="../excel.png" v-show="showType(row).isExcel">
-              <img src="../pdf.png" v-show="showType(row).isPdf">
-              <img src="../ppt.png" v-show="showType(row).isPpt">
-              <img src="../word.png" v-show="showType(row).isWord">
-              <img src="../unknown.png" v-show="showType(row).isOther">
-            </div>
-            <img class="pull-left " src="../file.png" style="cursor: pointer" v-show="row.type == 1" ">
-            <span  class="mar-left-5" style="cursor: pointer">{{row.fullName}}</span>
+        <Table stripe :columns="columns4" :data="data1" >
+<!--          <template slot-scope="{ row, index }" slot="fullName" >-->
+<!--            <div class="pull-left img-box mar-right-10" v-show="row.type != 1" style="cursor: pointer" @click="goSub(row)">-->
+<!--&lt;!&ndash;          <img :src="row.src" v-show="showType(row).isImg" style="height: 30px; width: 30px;">&ndash;&gt;-->
+<!--              <img src="../cad.png" v-show="showType(row).isCad">-->
+<!--              <img src="../excel.png" v-show="showType(row).isExcel">-->
+<!--              <img src="../pdf.png" v-show="showType(row).isPdf">-->
+<!--              <img src="../ppt.png" v-show="showType(row).isPpt">-->
+<!--              <img src="../word.png" v-show="showType(row).isWord">-->
+<!--              <img src="../unknown.png" v-show="showType(row).isOther">-->
+<!--            </div>-->
+<!--            <img class="pull-left " src="../file.png" style="cursor: pointer" v-show="row.type == 1" ">-->
+<!--            <span  class="mar-left-5" style="cursor: pointer">{{row.fullName}}</span>-->
+<!--          </template>-->
+           <template slot-scope="{ row, index }" slot="size">
+            <span class="cursor-pot" >{{row.size|getFileSize}}</span>
           </template>
         </Table>
       </div>
     </div>
     <div slot="modal-footer">
-      <Button type="primary" size="large" @click="handleAction()">确定</Button>
-      <Button type="default" size="large" @click="close">取消</Button>
+      <Row style="margin-bottom: 20px;">
+        <i-col span="12">
+          <Upload multiple :show-upload-list="false" with-credentials :on-success="upload" action="https://a.gcb365.com/api/web/file/upload">
+            <Button type="primary" size="large"> 文件添加 </Button>
+        </Upload>
+        </i-col>
+        <i-col span="12">
+         <Button type="default" size="large" @click="close">关闭</Button>
+        </i-col>
+      </Row>
     </div>
   </b-modal>
 </template>
 
 <script>
+  import cloud from '../module';
   import { buildDownloadUrl, getFileType, getFileSize } from "@/libs/tools";
   export default {
-   data(){
+    components: {},
+
+    data(){
      return{
        sharePubName:"",
        isnull:false,
        columns4: [
          {
-           type: 'selection',
-           width: 60,
-           align: 'center',
-           sortable: true
-         },
-         {
            title: '文件名',
-           key: 'fullName',
-           slot:"fullName"
+           key: 'name',
          },
-        ,
+
          {
            title: '大小',
-           key: 'sizeToString',
-           sortable: true
+           key: 'size',
+           slot:"size"
          },
 
          {
            title: '所在目录',
            key: 'opt',
-           slot:"opt"
+
          },
          {
            title: '状态',
-           key: 'sizeToString',
-           sortable: true
+           key: 'status',
          }
 
        ],
@@ -72,8 +78,17 @@
         default:null,
       },
       data1:{
-        type: Array
-      },
+        type:Array,
+        default:[
+          {
+            contentType: 1,
+            fileName: 2,
+            id: 2,
+            size: 3,
+            uuid: 4
+         }
+        ]
+      }
     },
     methods:{
       getfiles() {
@@ -90,6 +105,20 @@
           this.$emit("input", this.appendix);
         }
       },
+      upload(res, file, $files) {
+        cloud.api.uploadSuccess({
+          attachmentId: res.body.id,
+          folderId: this.$store.state.cloud.curItem.id
+        }).then((res)=>{
+          let uploadItem={
+            name:file.name,
+            status:file.status,
+            size:file.size,
+            opt:this.$store.state.cloud.curItem.fullName,
+          }
+          this.data1.push(uploadItem);
+        })
+      },
       showType(item) {
         return getFileType(item);
       },
@@ -99,6 +128,10 @@
       },
       close() {
         this.$refs.gcbReadRecords.hide();
+        let item=JSON.stringify(this.$store.state.cloud.curItem)
+        this.$emit("searchList",item)
+        this.$parent.files=[];
+        this.data1=[];
       },
       handleAction() {
         if(this.sharePubName==''||this.sharePubName==undefined){
@@ -111,9 +144,7 @@
         this.close();
       },
     },
-    mounted(){
-        console.log(this.files)
-    }
+    mounted(){}
   }
 </script>
 <style lang="less" scoped>
@@ -158,6 +189,9 @@
   }
   .colGrey{
     color: #939BA4;
+  }
+  .h-400{
+    min-height: 450px !important;
   }
   .listHead .handle{
     float: left;

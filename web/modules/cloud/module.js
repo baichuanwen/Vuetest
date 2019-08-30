@@ -32,7 +32,7 @@ let cloud = {
           component: resolve => require(['@/modules/cloud/cloud-enterprise/CloudEnterprise.vue'], resolve)
         },
         {
-          path: 'cloudEnterpriseSub/:id',
+          path: 'cloudEnterpriseSub/:fullName/:id',
           name: 'cloudEnterpriseSub',
           meta: {
             title: '企业文档sub',
@@ -67,7 +67,7 @@ let cloud = {
       deleteFile(request) { return axiosHandle('post',"web/cloudDisk/delete", request) },
        uploadSuccess(request) { return axiosHandle('post',"web/cloudDisk/uploadSuccess", request) },
       // findShares: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/findShares"), request); },
-      // editShare: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/editShare"), request); },
+       editShare(request) { return axiosHandle('post',"web/cloudDisk/editShare", request); },
       // quitShare: function(request) { return $http.post(getSystemServerUrl("/cloudDisk/quitShare"), request); },
        fileRemoval(request) {  return axiosHandle('post',"web/cloudDisk/fileRemoval", request) },
       getOnlineUrl(request) { return axiosHandle('post',"web/previewOnline/getOnlineUrl", request)},

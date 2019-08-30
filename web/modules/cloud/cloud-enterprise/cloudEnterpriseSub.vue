@@ -1,6 +1,6 @@
 <template>
   <div class="animated fadeIn">
-    <Row  :gutter="16">
+    <Row  :gutter="16" style="margin-bottom: 10px">
       <Col >
           <bread  @searchList="searchList"></bread>
       </Col>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <createFileModal ref="sharePubModal"  @createShare="createShare"></createFileModal>
-    <uploadModal :files="files"  ref="uploadModal" ></uploadModal>
+    <uploadModal :data1="files"  @searchList="searchList" ref="uploadModal" ></uploadModal>
   </div>
 </template>
 <script>
@@ -78,14 +78,20 @@
         let resq=Object.assign(this.request,reqeust);
         cloud.api.myFileSearch(resq).then((res)=>{
           this.datas=res.page.records;
+
           this.containUpload=res.containUpload;
         })
       },
       createFloder(){
-        this.$refs.sharePubModal.open()
+        this.$nextTick(_=>{
+          this.$refs.sharePubModal.open()
+        })
       },
       delete2(){
-        this.$refs.tableList.delete2()
+        this.$nextTick(_=>{
+          this.$refs.tableList.delete2()
+        })
+
       },
       createShare(shareName){
         this.createFileParam.name=shareName;
@@ -103,10 +109,18 @@
            attachmentId: res.body.id,
            folderId: this.$store.state.cloud.curItem.id
          }).then((res)=>{
-           this.files.push(file);
-           this.$refs.uploadModal.open();
-          console.log(this.files)
-          this.searchList(this.$store.state.cloud.curItem)
+           let uploadItem={
+             name:file.name,
+             status:file.status,
+             size:file.size,
+             opt:this.$store.state.cloud.curItem.fullName,
+           }
+           this.files.push(uploadItem);
+          this.$nextTick(_=>{
+            this.$refs.uploadModal.open();
+          })
+
+
          })
       },
       //分页
@@ -123,6 +137,7 @@
         }
         cloud.api.myFileSearch(param).then(res => {
           this.data1 = res.page.records;
+          this.total=res.page.total;
           this.data1.map((item, index) => {
             item.src = buildDownloadUrl(item.attachmentUuid);
           })

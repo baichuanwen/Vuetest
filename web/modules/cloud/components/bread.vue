@@ -43,16 +43,15 @@
       },
     },
     mounted(){
-
+      let item=this.$route.params;
+      this.$store.commit("setBreads",item);
     }
   }
 </script>
 <style lang="less" scoped>
-
   .ml5{
     margin-left: 5px;
   }
-
   .point{
     cursor: pointer;
   }

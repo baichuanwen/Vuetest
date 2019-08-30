@@ -36,21 +36,23 @@
         <Dropdown-menu slot="list">
           <Dropdown-item v-show="row.canEdit" @click.native="delete2([row.id]);" >删除</Dropdown-item>
           <Dropdown-item  v-show="row.canEdit" @click.native="rename(row);">重命名</Dropdown-item>
-          <copyModal :title="title" :item="row" @childSearch="childSearch()" ref="copyModal"></copyModal>
           <Dropdown-item v-show="row.canEdit&&index!=0" @click.native="setTop(row);">置顶</Dropdown-item>
           <Dropdown-item v-show="row.canEdit&&index==0" @click.native="cancelTop(row);">取消置顶</Dropdown-item>
-          <Dropdown-item>共享</Dropdown-item>
+          <Dropdown-item v-show="row.canEdit&&row.type==1" @click.native="openShareModal(row);">共享</Dropdown-item>
           <Dropdown-item v-show="row.canEdit" @click.native="copy(row);">复制</Dropdown-item>
         </Dropdown-menu>
       </Dropdown>
     </template>
   </Table>
+  <copyModal :title="title"  @childSearch="childSearch()" ref="copyModal"></copyModal>
+  <shareModal @childSearch="childSearch()" ref="shareModal"></shareModal>
 </div>
 </template>
 
 <script>
   import cloud from '../module';
   import copyModal from '../copyModal';
+  import shareModal from '../components/shareModal';
   import {
     buildDownloadUrl,
     getFileType,
@@ -60,6 +62,7 @@
   export default {
     components:{
       copyModal,
+      shareModal
     },
    data(){
      return{
@@ -127,6 +130,11 @@
       showType(file) {
         return getFileType(file);
       },
+      openShareModal(item){
+        this.$nextTick(()=>{
+          this.$refs.shareModal.open(item);
+        })
+      },
       delete2(ids){
         if(ids){
           this.ids=ids;
@@ -174,7 +182,6 @@
           this.$emit("searchList")
           item.showEdit = false;
         })
-
       },
       childSearch(){
         this.$emit("searchList")
@@ -197,13 +204,17 @@
       },
       copy(item){
         this.item=item;
-        this.$refs.copyModal.open(item);
-        this.$refs.copyModal.searchFloder({
-          fileSubjectionType: 1,
-          condition: null,
-          fileType: 1,
-          folderId: null
+        this.$nextTick(_=>{
+          console.log(this.$refs.copyModal)
+          this.$refs.copyModal.open(item);
+          this.$refs.copyModal.searchFloder({
+            fileSubjectionType: 1,
+            condition: null,
+            fileType: 1,
+            folderId: null
+          })
         })
+
 
       },
       // 查看大图
@@ -238,15 +249,12 @@
            this.$store.commit("setBreads",item);
             this.$emit("searchList",JSON.stringify(item))
         }else{
-          this.$router.push({name:"cloudEnterpriseSub", params:{id: item.id}});
+          this.$router.push({name:"cloudEnterpriseSub", params:{id: item.id,fullName:item.fullName}});
           this.$store.commit("setBreads",item);
         }
-
       },
     },
-    mounted(){
-
-    }
+    mounted(){}
   }
 </script>
 <style lang="less" scoped >
